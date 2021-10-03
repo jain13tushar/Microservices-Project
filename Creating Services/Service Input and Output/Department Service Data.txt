@@ -1,0 +1,23 @@
+POST
+
+URL: http://localhost:9001/departments/
+
+DATA
+{
+	"departmentName":"IT",
+	"departmentAddress":"3rd Cross, First Street",
+	"departmentCode":"IT-006"
+}
+
+GET
+
+URL: http://localhost:9001/departments/1
+
+OUTPUT
+
+{
+    "departmentId": 1,
+    "departmentName": "IT",
+    "departmentAddress": "3rd Cross, First Street",
+    "departmentCode": "IT-006"
+}

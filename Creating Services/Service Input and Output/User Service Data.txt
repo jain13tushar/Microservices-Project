@@ -1,0 +1,33 @@
+POST
+
+URL: http://localhost:9002/users/
+
+DATA
+{
+    "firstName":"Shabbir",
+    "lastName":"Dawoodi",
+    "email": "TJ",
+    "departmentId":"1"
+}
+
+GET
+
+URL: http://localhost:9002/users/1
+
+OUTPUT
+
+{
+    "user": {
+        "userId": 1,
+        "firstName": "Shabbir",
+        "lastName": "Dawoodi",
+        "email": "TJ",
+        "departmentId": 1
+    },
+    "department": {
+        "departmentId": 1,
+        "departmentName": "IT",
+        "departmentAddress": "3rd Cross, First Street",
+        "departmentCode": "IT-006"
+    }
+}
