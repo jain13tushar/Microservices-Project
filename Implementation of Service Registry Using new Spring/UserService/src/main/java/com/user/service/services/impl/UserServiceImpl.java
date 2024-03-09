@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -13,6 +12,7 @@ import com.user.service.entities.Hotel;
 import com.user.service.entities.Rating;
 import com.user.service.entities.User;
 import com.user.service.exceptions.ResourceNotFoundException;
+import com.user.service.external.service.HotelService;
 import com.user.service.repositories.UserRepository;
 import com.user.service.services.UserService;
 
@@ -25,6 +25,8 @@ public class UserServiceImpl implements UserService {
 	private UserRepository userRepository;
 
 	private RestTemplate restTemplate;
+
+	private HotelService hotelService;
 
 	@Override
 	public User saveUser(User user) {
@@ -48,9 +50,10 @@ public class UserServiceImpl implements UserService {
 		List<Rating> ratings = Arrays.stream(ratingsOfUser).toList();
 
 		List<Rating> ratingList = ratings.stream().map(rating -> {
-			ResponseEntity<Hotel> forEntity = restTemplate
-					.getForEntity("http://HOTEL-SERVICE/hotels/" + rating.getHotelId(), Hotel.class);
-			Hotel hotel = forEntity.getBody();
+			// ResponseEntity<Hotel> forEntity = restTemplate
+			// .getForEntity("http://HOTEL-SERVICE/hotels/" + rating.getHotelId(),
+			// Hotel.class);
+			Hotel hotel = hotelService.getHotel(rating.getHotelId());
 			rating.setHotel(hotel);
 			return rating;
 		}).collect(Collectors.toList());
