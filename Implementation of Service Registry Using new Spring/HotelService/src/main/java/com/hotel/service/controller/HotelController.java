@@ -28,14 +28,16 @@ public class HotelController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(hotelService.create(hotel));
 	}
 
-	@GetMapping("/hotelId")
-	public ResponseEntity<Hotel> createHotel(@PathVariable String hotelId) {
-		return ResponseEntity.status(HttpStatus.CREATED).body(hotelService.get(hotelId));
+	@GetMapping("/{HotelId}")
+	public ResponseEntity<Hotel> getSingleHotel(@PathVariable String HotelId) {
+		Hotel Hotel = hotelService.get(HotelId);
+		return ResponseEntity.status(HttpStatus.OK).body(Hotel);
 	}
 
 	@GetMapping
 	public ResponseEntity<List<Hotel>> getAll() {
-		return ResponseEntity.ok(hotelService.getAll());
+		List<Hotel> allHotel = hotelService.getAll();
+		return ResponseEntity.ok(allHotel);
 	}
 
 }

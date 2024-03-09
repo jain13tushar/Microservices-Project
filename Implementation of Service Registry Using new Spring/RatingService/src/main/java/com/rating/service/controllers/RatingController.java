@@ -25,22 +25,24 @@ public class RatingController {
 
 	@PostMapping
 	public ResponseEntity<Rating> create(@RequestBody Rating rating) {
-		return ResponseEntity.status(HttpStatus.CREATED).body(ratingService.create(rating));
-	}
-
-	@GetMapping
-	public ResponseEntity<List<Rating>> getRatings() {
-		return ResponseEntity.ok(ratingService.getRatings());
+		System.out.println("Create Rating");
+		Rating ratingone = ratingService.create(rating);
+		return ResponseEntity.status(HttpStatus.CREATED).body(ratingone);
 	}
 
 	@GetMapping("/users/{userId}")
-	public ResponseEntity<List<Rating>> getRatingsByUserId(@PathVariable String userId) {
+	public ResponseEntity<List<Rating>> getRatingByUserId(@PathVariable String userId) {
 		return ResponseEntity.ok(ratingService.getRatingByUserId(userId));
 	}
 
 	@GetMapping("/hotels/{hotelId}")
-	public ResponseEntity<List<Rating>> getRatingsByHotelId(@PathVariable String hotelId) {
+	public ResponseEntity<List<Rating>> getRatingByHotelId(@PathVariable String hotelId) {
 		return ResponseEntity.ok(ratingService.getRatingByHotelId(hotelId));
+	}
+
+	@GetMapping
+	public ResponseEntity<List<Rating>> getRating() {
+		return ResponseEntity.ok(ratingService.getRatings());
 	}
 
 }
