@@ -7,13 +7,19 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "micro_users")
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class User {
 
 	@Id
